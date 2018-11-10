@@ -115,6 +115,7 @@
             this.lbName4.TabIndex = 7;
             this.lbName4.TabStop = true;
             this.lbName4.Text = "linkLabel4";
+            this.lbName4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbName4_LinkClicked);
             // 
             // picBox4
             // 
@@ -169,6 +170,7 @@
             this.lbName3.TabIndex = 6;
             this.lbName3.TabStop = true;
             this.lbName3.Text = "linkLabel3";
+            this.lbName3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbName3_LinkClicked);
             // 
             // picBox3
             // 
@@ -223,6 +225,7 @@
             this.lbName2.TabIndex = 5;
             this.lbName2.TabStop = true;
             this.lbName2.Text = "linkLabel2";
+            this.lbName2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbName2_LinkClicked);
             // 
             // picBox2
             // 
