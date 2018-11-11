@@ -19,7 +19,11 @@ using System.Data.SqlClient;
 
 namespace WindowsFormsApp1
 {
-   
+   class identify
+    {
+        public static int ID = 0;
+        public static string type;
+    }
 
     public partial class Form1 : Form
     {
