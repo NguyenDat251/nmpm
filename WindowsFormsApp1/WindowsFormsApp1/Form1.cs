@@ -54,7 +54,7 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            SqlConnection con = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
+            SqlConnection con = new SqlConnection("Data Source=34.222.44.149;Initial Catalog=JOBS;Persist Security Info=True;User ID=admin; Password = 123456");
             con.Open();
             loadJobList(con);
             loadApplyList(con);
@@ -84,7 +84,7 @@ namespace WindowsFormsApp1
             changeListJob();
             
         }
-
+         
         void loadLabel(int i, Label Name, Label Com, Label Lang, PictureBox picBox)
         {
             try
@@ -230,7 +230,7 @@ namespace WindowsFormsApp1
 
         private void btnNxt_Click(object sender, EventArgs e)
         {
-            if (NumPage + 5 <= AmountOfApply)
+            if (NumPageApply + 5 <= AmountOfApply)
             {
                 NumPageApply += 4;
                 changeListApply();
@@ -239,7 +239,7 @@ namespace WindowsFormsApp1
 
         private void btnPre_Click(object sender, EventArgs e)
         {
-            if (NumPage  < 3)
+            if (NumPageApply  > 3)
             {
                 NumPageApply -= 4;
                 changeListApply();
