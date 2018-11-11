@@ -23,6 +23,7 @@ namespace WindowsFormsApp1
 
     public partial class Form1 : Form
     {
+
         struct Jobs
         {
             public int ID;
@@ -32,24 +33,33 @@ namespace WindowsFormsApp1
             public int Salary;
             public string Description;
         }
-
+        struct Aplly
+        {
+            public string NameCandidate;
+            public string NameJob;
+        }
         static List<Jobs> LJ = new List<Jobs>();
+        List<Aplly> LApply = new List<Aplly>();
 
-        int NumPage = 1;
+        int NumPage = 0;
+        int NumPageApply = 0;
         int AmountOfJobs = 0;
+        int AmountOfApply = 0;
+
 
         public Form1()
         {
             InitializeComponent();
-
-            loadJobList();
-        }
-
-        void loadJobList()
-        {
             SqlConnection con = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
             con.Open();
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM dbo.JOBS", con);
+            loadJobList(con);
+            loadApplyList(con);
+        }
+
+        void loadJobList(SqlConnection con)
+        {
+           
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM dbo.JOB", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
@@ -71,30 +81,82 @@ namespace WindowsFormsApp1
             
         }
 
+        void loadLabel(int i, Label Name, Label Com, Label Lang, PictureBox picBox)
+        {
+            try
+            {
+                Name.Text = LJ[NumPage + i].Name;
+                Com.Text = LJ[NumPage + i].Company;
+                Lang.Text = LJ[NumPage + i].Language;
+                picBox.Image = Image.FromFile("images\\" + Com.Text + ".jpeg");
+            }
+            catch
+            {
+                Name.Text = "";
+                Com.Text = "";
+                Lang.Text = "";
+                picBox.Image = null;
+            }
+        }
+
         private void changeListJob()
         {
+            loadLabel(0, lbName, lbCom, lbLang, picBox1);
 
-            lbName.Text = LJ[NumPage - 1].Name;
-            lbCom.Text = LJ[NumPage - 1].Company;
-            lbLang.Text = LJ[NumPage - 1].Language;
-            picBox1.Image = Image.FromFile("images\\" + lbCom.Text + ".jpeg");
+            loadLabel(1, lbName2, lbCom2, lbLang2, picBox2);
 
+            loadLabel(2, lbName3, lbCom3, lbLang3, picBox3);
 
-            lbName2.Text = LJ[NumPage].Name;
-            lbCom2.Text = LJ[NumPage].Company;
-            lbLang2.Text = LJ[NumPage].Language;
-            picBox2.Image = Image.FromFile("images\\" + lbCom2.Text + ".jpeg");
-
-            lbName3.Text = LJ[NumPage + 1].Name;
-            lbCom3.Text = LJ[NumPage + 1].Company;
-            lbLang3.Text = LJ[NumPage + 1].Language;
-            picBox3.Image = Image.FromFile("images\\" + lbCom3.Text + ".jpeg");
-
-            lbName4.Text = LJ[NumPage + 2].Name;
-            lbCom4.Text = LJ[NumPage + 2].Company;
-            lbLang4.Text = LJ[NumPage + 2].Language;
-            picBox4.Image = Image.FromFile("images\\" + lbCom4.Text + ".jpeg");
+            loadLabel(3, lbName4, lbCom4, lbLang4, picBox4);
         }
+
+        void loadApplyList(SqlConnection con)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT	C.NAME, J.NAME " +
+                "FROM CANDIDATE AS C, APPLY AS A, JOB AS J " +
+                "WHERE C.IDCAND = A.IDCAND AND A.IDJOB = J.ID", con);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+
+            
+            foreach (DataRow item in dt.Rows)
+            {
+                Aplly temp;
+                temp.NameCandidate = item[0].ToString().Trim();
+                temp.NameJob = item[1].ToString().Trim();
+
+                AmountOfApply++;
+                LApply.Add(temp);
+            }
+
+            changeListApply();
+        }
+
+        
+        void loadLabelApply(int i, Label Candidate, Label Job, Panel pn)
+        {
+            try
+            {
+                Candidate.Text = LApply[NumPageApply + i].NameCandidate;
+                Job.Text = LApply[NumPageApply + i].NameJob;
+                pn.Show();
+            }
+            catch
+            {
+                pn.Hide();
+            }
+        }
+        private void changeListApply()
+        {
+            loadLabelApply(0, lbCandidate1, lbJob1, pnlApply1);
+            
+            loadLabelApply(1, lbCandidate2, lbJob2, pnlApply2);
+            
+            loadLabelApply(2, lbCandidate3, lbJob3, pnlApply3);
+
+            loadLabelApply(3, lbCandidate4, lbJob4, pnlApply4);
+        }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -108,7 +170,7 @@ namespace WindowsFormsApp1
 
         private void btnNEXT_Click(object sender, EventArgs e)
         {
-            if (NumPage + 7 <= AmountOfJobs)
+            if (NumPage + 5 <= AmountOfJobs)
             {
                 NumPage += 4;
                 changeListJob();
@@ -117,7 +179,7 @@ namespace WindowsFormsApp1
 
         private void btnBACK_Click(object sender, EventArgs e)
         {
-            if (NumPage > 4)
+            if (NumPage > 3)
             {
                 NumPage -= 4;
                 changeListJob();
@@ -160,6 +222,24 @@ namespace WindowsFormsApp1
             CurrentJob f = new CurrentJob(LJ[NumPage + 2].Name, LJ[NumPage + 2].Company, LJ[NumPage + 2].Language, LJ[NumPage + 2].Salary, LJ[NumPage - 1].Description);
 
             f.ShowDialog();
+        }
+
+        private void btnNxt_Click(object sender, EventArgs e)
+        {
+            if (NumPage + 5 <= AmountOfApply)
+            {
+                NumPageApply += 4;
+                changeListApply();
+            }
+        }
+
+        private void btnPre_Click(object sender, EventArgs e)
+        {
+            if (NumPage  < 3)
+            {
+                NumPageApply -= 4;
+                changeListApply();
+            }
         }
     }
 }
