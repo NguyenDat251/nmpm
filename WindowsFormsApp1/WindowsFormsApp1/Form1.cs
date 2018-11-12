@@ -197,7 +197,7 @@ namespace WindowsFormsApp1
 
         private void lbName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage - 1].Name, LJ[NumPage - 1].Company, LJ[NumPage - 1].Language, LJ[NumPage - 1].Salary, LJ[NumPage - 1].Description);
+            CurrentJob f = new CurrentJob(LJ[NumPage].Name, LJ[NumPage].Company, LJ[NumPage].Language, LJ[NumPage].Salary, LJ[NumPage].Description);
            
             f.ShowDialog();
         }
@@ -209,21 +209,21 @@ namespace WindowsFormsApp1
 
         private void lbName2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage].Name, LJ[NumPage].Company, LJ[NumPage].Language, LJ[NumPage].Salary, LJ[NumPage - 1].Description);
+            CurrentJob f = new CurrentJob(LJ[NumPage + 1].Name, LJ[NumPage + 1].Company, LJ[NumPage + 1].Language, LJ[NumPage + 1].Salary, LJ[NumPage + 1].Description);
 
             f.ShowDialog();
         }
 
         private void lbName3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage + 1].Name, LJ[NumPage + 1].Company, LJ[NumPage + 1].Language, LJ[NumPage + 1].Salary, LJ[NumPage - 1].Description);
+            CurrentJob f = new CurrentJob(LJ[NumPage + 2].Name, LJ[NumPage + 2].Company, LJ[NumPage + 2].Language, LJ[NumPage + 2].Salary, LJ[NumPage + 2].Description);
 
             f.ShowDialog();
         }
 
         private void lbName4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage + 2].Name, LJ[NumPage + 2].Company, LJ[NumPage + 2].Language, LJ[NumPage + 2].Salary, LJ[NumPage - 1].Description);
+            CurrentJob f = new CurrentJob(LJ[NumPage + 3].Name, LJ[NumPage + 3].Company, LJ[NumPage + 3].Language, LJ[NumPage + 3].Salary, LJ[NumPage + 3].Description);
 
             f.ShowDialog();
         }
