@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.picBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -54,6 +55,8 @@
             this.btnNEXT = new System.Windows.Forms.Button();
             this.tc = new System.Windows.Forms.TabControl();
             this.tcJob = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.tcEmployee = new System.Windows.Forms.TabPage();
             this.panel12 = new System.Windows.Forms.Panel();
             this.btnNxt = new System.Windows.Forms.Button();
@@ -106,6 +109,22 @@
             this.pnlApply2.SuspendLayout();
             this.pnlApply1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AccessibleDescription = "";
+            this.comboBox1.AccessibleName = "";
+            this.comboBox1.Cursor = System.Windows.Forms.Cursors.No;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Tên công ty",
+            "Tên công việc"});
+            this.comboBox1.Location = new System.Drawing.Point(292, 47);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // picBox1
             // 
@@ -383,6 +402,9 @@
             // tcJob
             // 
             this.tcJob.BackColor = System.Drawing.Color.Gainsboro;
+            this.tcJob.Controls.Add(this.comboBox1);
+            this.tcJob.Controls.Add(this.btnSearch);
+            this.tcJob.Controls.Add(this.txtSearch);
             this.tcJob.Controls.Add(this.panel1);
             this.tcJob.Controls.Add(this.panel6);
             this.tcJob.Location = new System.Drawing.Point(4, 22);
@@ -392,6 +414,23 @@
             this.tcJob.TabIndex = 0;
             this.tcJob.Text = "Công việc";
             this.tcJob.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(417, 47);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(80, 23);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(17, 47);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(269, 20);
+            this.txtSearch.TabIndex = 5;
             // 
             // tcEmployee
             // 
@@ -771,6 +810,7 @@
             this.panel6.ResumeLayout(false);
             this.tc.ResumeLayout(false);
             this.tcJob.ResumeLayout(false);
+            this.tcJob.PerformLayout();
             this.tcEmployee.ResumeLayout(false);
             this.tcEmployee.PerformLayout();
             this.panel12.ResumeLayout(false);
@@ -847,6 +887,9 @@
         private System.Windows.Forms.Label lbCandidate2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label lbJob1;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

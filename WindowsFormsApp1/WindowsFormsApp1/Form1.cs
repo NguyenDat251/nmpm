@@ -46,11 +46,11 @@ namespace WindowsFormsApp1
         int AmountOfJobs = 0;
         int AmountOfApply = 0;
 
+        static public SqlConnection con = new SqlConnection("Data Source=34.222.44.149;Initial Catalog=JOBS;Persist Security Info=True;User ID=admin; Password = 123456");
 
         public Form1()
         {
             InitializeComponent();
-            SqlConnection con = new SqlConnection("Data Source=34.222.44.149;Initial Catalog=JOBS;Persist Security Info=True;User ID=admin; Password = 123456");
             con.Open();
             loadJobList(con);
             loadApplyList(con);
@@ -63,7 +63,6 @@ namespace WindowsFormsApp1
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
-            string dcr;
             foreach (DataRow item in dt.Rows)
             {
                 Jobs temp;
@@ -241,6 +240,48 @@ namespace WindowsFormsApp1
                 changeListApply();
             }
         }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+          
+            string title = comboBox1.GetItemText(comboBox1.SelectedItem);
+            SqlDataAdapter sda;
+
+            if (title == "Tên công việc")
+            {
+                sda = new SqlDataAdapter("SELECT * " + "FROM JOB AS J " + "WHERE J.NAME LIKE '%" + txtSearch.Text + "%'", con);
+                sda.Fill(dt);
+            }
+            else if (title == "Tên công ty")
+            {
+                sda = new SqlDataAdapter("SELECT * " + "FROM JOB AS J " + "WHERE J.COMPANY LIKE '%" + txtSearch.Text + "%'", con);
+                sda.Fill(dt);
+            }
+           
+            
+
+            foreach (DataRow item in dt.Rows)
+            {
+                Jobs temp;
+                temp.ID = int.Parse(item[0].ToString().Trim());
+                temp.Name = item[1].ToString().Trim();
+                temp.Company = item[2].ToString().Trim();
+                temp.Language = item[3].ToString().Trim();
+                temp.Salary = int.Parse(item[4].ToString().Trim());
+                temp.Description = item[5].ToString().Trim();
+                AmountOfJobs++;
+                LJ.Add(temp);
+            }
+            changeListJob();
+        }
+
+       
     }
 
     class identify
