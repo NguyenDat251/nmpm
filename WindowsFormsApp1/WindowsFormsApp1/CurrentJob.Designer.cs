@@ -197,6 +197,7 @@
             this.txtBDescription.Name = "txtBDescription";
             this.txtBDescription.Size = new System.Drawing.Size(329, 116);
             this.txtBDescription.TabIndex = 0;
+            this.txtBDescription.TextChanged += new System.EventHandler(this.txtBDescription_TextChanged);
             // 
             // btnCV
             // 

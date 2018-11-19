@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace WindowsFormsApp1
 {
@@ -29,7 +33,7 @@ namespace WindowsFormsApp1
             lbLang.Text = Language;
             lbSalary.Text = Salary.ToString();
             txtBDescription.Text = Description;
-            pictBLogo.Image = Image.FromFile("images\\" + lbCom.Text + ".jpeg");
+            pictBLogo.Image = System.Drawing.Image.FromFile("images\\" + lbCom.Text + ".jpeg");
         }
 
         private void btnCLose_Click(object sender, EventArgs e)
@@ -78,6 +82,82 @@ namespace WindowsFormsApp1
             //    File.Move(path, path2);
             //    MessageBox.Show("File Moved");
             //}
+
+
+            using (Form1.con)
+
+            {
+
+                //Form1.con.Open();
+
+                FileStream fStream = File.OpenRead(txtCV.Text);
+
+                byte[] contents = new byte[fStream.Length];
+
+                fStream.Read(contents, 0, (int)fStream.Length);
+
+                fStream.Close();
+
+                using (SqlCommand cmd = new SqlCommand("insert into SavePDFTable " + "(PDFFile)values(@data)", Form1.con))
+                {
+                    cmd.Parameters.AddWithValue("@data", contents);
+
+                    cmd.ExecuteNonQuery();
+                }
+                Form1.con.Close();
+            }
+            
+            Document doc = new Document();
+            /*Tại sao phải mở file doc ra rồi thêm 1 chữ a vào xong đóng lại?
+            mục đích mấy dòng này là tạo ra file dpf thôi.
+            Nhưng mà khi xuống dòng lệnh using (System.IO.FileStream fs = new System.IO.FileStream(ToSaveFileTo, System.IO.FileMode.Create, System.IO.FileAccess.ReadWrite))
+            thì nó lại không cho mở file ra chép vô vì cái doc đang mở file đó rồi, nên trước hết phải đóng lại.
+            Nhưng mà visual lại không cho đóng file tự tiện vậy, đại khái lỗi là trong file pdf không có dữ liệu nào nên không cho đóng
+            do đó thêm đại 1 chữ a vô cho nó đóng được, dù gì tí nữa xuống kia cũng ghi đè lên lại hết*/
+            PdfWriter.GetInstance(doc, new FileStream("CV\\NQD.pdf", FileMode.Create));
+
+            doc.Open();
+            Paragraph p1 = new Paragraph("a");
+            doc.Add(p1);
+            doc.Close();
+            string ToSaveFileTo = "CV\\1.JPEG";
+
+            using (Form1.con)
+            {
+                Form1.con = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
+                Form1.con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("select PDFFile from SavePDFTable  where ID='" + "9" + "' ", Form1.con))
+                {
+                    using (SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.Default))
+                    {
+                        if (dr.Read())
+                        {
+                            byte[] fileData = (byte[])dr.GetValue(0);
+
+                            using (System.IO.FileStream fs = new System.IO.FileStream(ToSaveFileTo
+                                , System.IO.FileMode.Create, System.IO.FileAccess.ReadWrite))
+                            {
+                                using (System.IO.BinaryWriter bw = new System.IO.BinaryWriter(fs))
+                                {
+                                    bw.Write(fileData);
+
+                                    bw.Close();
+
+                                    MessageBox.Show("Done");
+                                      
+                                }
+
+                            }
+
+                        }
+                        
+                        dr.Close();
+                    }
+
+                }
+
+            }
         }
 
         private void btnCV_Click(object sender, EventArgs e)
@@ -95,7 +175,12 @@ namespace WindowsFormsApp1
             }
         }
 
-     
+        private void txtBDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
 
         //private void label7_Click(object sender, EventArgs e)
         //{

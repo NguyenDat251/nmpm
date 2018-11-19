@@ -89,6 +89,9 @@
             this.lbUngTuyen = new System.Windows.Forms.Label();
             this.btnAddJob = new System.Windows.Forms.Button();
             this.tcAdmin = new System.Windows.Forms.TabPage();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -108,6 +111,7 @@
             this.pnlApply3.SuspendLayout();
             this.pnlApply2.SuspendLayout();
             this.pnlApply1.SuspendLayout();
+            this.tcAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -776,6 +780,9 @@
             // 
             // tcAdmin
             // 
+            this.tcAdmin.Controls.Add(this.button12);
+            this.tcAdmin.Controls.Add(this.button11);
+            this.tcAdmin.Controls.Add(this.button10);
             this.tcAdmin.Location = new System.Drawing.Point(4, 22);
             this.tcAdmin.Name = "tcAdmin";
             this.tcAdmin.Padding = new System.Windows.Forms.Padding(3);
@@ -783,6 +790,37 @@
             this.tcAdmin.TabIndex = 2;
             this.tcAdmin.Text = "Admin";
             this.tcAdmin.UseVisualStyleBackColor = true;
+            this.tcAdmin.Click += new System.EventHandler(this.tcAdmin_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(3, 6);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(98, 24);
+            this.button10.TabIndex = 0;
+            this.button10.Text = "button10";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(107, 6);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(98, 24);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "button11";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(211, 6);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(98, 24);
+            this.button12.TabIndex = 2;
+            this.button12.Text = "button12";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // Form1
             // 
@@ -823,6 +861,7 @@
             this.pnlApply2.PerformLayout();
             this.pnlApply1.ResumeLayout(false);
             this.pnlApply1.PerformLayout();
+            this.tcAdmin.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -890,6 +929,9 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button11;
     }
 }
 

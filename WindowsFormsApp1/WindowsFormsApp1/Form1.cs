@@ -38,22 +38,60 @@ namespace WindowsFormsApp1
             public string NameCandidate;
             public string NameJob;
         }
+
+        struct PanelJobs
+        {
+            public LinkLabel Name;
+            public Label Com;
+            public Label Lang;
+            public PictureBox picBox;
+        }
+
         static List<Jobs> LJ = new List<Jobs>();
+        static List<Jobs> LJSearch = new List<Jobs>();
         List<Aplly> LApply = new List<Aplly>();
 
         int NumPage = 0;
         int NumPageApply = 0;
         int AmountOfJobs = 0;
+        int AmountOfJobsSearch = 0;
         int AmountOfApply = 0;
 
-        static public SqlConnection con = new SqlConnection("Data Source=34.222.44.149;Initial Catalog=JOBS;Persist Security Info=True;User ID=admin; Password = 123456");
+        //static public SqlConnection con = new SqlConnection("Data Source=34.222.44.149;Initial Catalog=JOBS;Persist Security Info=True;User ID=admin; Password = 123456");
+
+        static public SqlConnection con = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
 
         public Form1()
         {
             InitializeComponent();
             con.Open();
+
+            //PanelJobs[] listPanelJob = new PanelJobs[4];
+            //listPanelJob[0].Name = lbName;
+            //listPanelJob[0].Com = lbCom;
+            //listPanelJob[0].Lang = lbLang;
+            //listPanelJob[0].picBox = picBox1;
+
+            //listPanelJob[1].Name = lbName2;
+            //listPanelJob[1].Com = lbCom2;
+            //listPanelJob[1].Lang = lbLang2;
+            //listPanelJob[1].picBox = picBox2;
+
+            //listPanelJob[2].Name = lbName3;
+            //listPanelJob[2].Com = lbCom3;
+            //listPanelJob[2].Lang = lbLang3;
+            //listPanelJob[2].picBox = picBox3;
+
+            //listPanelJob[3].Name = lbName4;
+            //listPanelJob[3].Com = lbCom4;
+            //listPanelJob[3].Lang = lbLang4;
+            //listPanelJob[3].picBox = picBox4;
+
+
             loadJobList(con);
             loadApplyList(con);
+
+
         }
 
         void loadJobList(SqlConnection con)
@@ -76,17 +114,36 @@ namespace WindowsFormsApp1
                 LJ.Add(temp);
             }
 
-            changeListJob();
+            changeListJob(LJ);
             
         }
-         
-        void loadLabel(int i, Label Name, Label Com, Label Lang, PictureBox picBox)
+
+        void loadLabelUpgrade(ref PanelJobs temp, ref List<Jobs> theList, int i)
         {
             try
             {
-                Name.Text = LJ[NumPage + i].Name;
-                Com.Text = LJ[NumPage + i].Company;
-                Lang.Text = LJ[NumPage + i].Language;
+                temp.Name.Text = theList[NumPage + i].Name;
+                temp.Com.Text = theList[NumPage + i].Company;
+                temp.Lang.Text = theList[NumPage + i].Language;
+                temp.picBox.Image = Image.FromFile("images\\" + temp.Com.Text + ".jpeg");
+            }
+            catch
+            {
+                temp.Name.Text = "";
+                temp.Com.Text = "";
+                temp.Lang.Text = "";
+                temp.picBox.Image = null;
+            }
+        }
+
+
+        void loadLabel(int i,ref LinkLabel Name, ref Label Com, ref Label Lang, ref PictureBox picBox, ref List<Jobs> TheList)
+        {
+            try
+            {
+                Name.Text = TheList[NumPage + i].Name;
+                Com.Text = TheList[NumPage + i].Company;
+                Lang.Text = TheList[NumPage + i].Language;
                 picBox.Image = Image.FromFile("images\\" + Com.Text + ".jpeg");
             }
             catch
@@ -98,15 +155,15 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void changeListJob()
+        private void changeListJob(List<Jobs> TheList)
         {
-            loadLabel(0, lbName, lbCom, lbLang, picBox1);
+            loadLabel(0,ref lbName, ref lbCom, ref lbLang, ref picBox1, ref TheList);
 
-            loadLabel(1, lbName2, lbCom2, lbLang2, picBox2);
+            loadLabel(1, ref lbName2, ref lbCom2, ref lbLang2, ref picBox2, ref TheList);
 
-            loadLabel(2, lbName3, lbCom3, lbLang3, picBox3);
+            loadLabel(2, ref lbName3, ref lbCom3, ref lbLang3, ref picBox3, ref TheList);
 
-            loadLabel(3, lbName4, lbCom4, lbLang4, picBox4);
+            loadLabel(3, ref lbName4, ref lbCom4, ref lbLang4, ref picBox4, ref TheList);
         }
 
         void loadApplyList(SqlConnection con)
@@ -172,7 +229,7 @@ namespace WindowsFormsApp1
             if (NumPage + 5 <= AmountOfJobs)
             {
                 NumPage += 4;
-                changeListJob();
+                changeListJob(LJ);
             }
         }
 
@@ -181,7 +238,7 @@ namespace WindowsFormsApp1
             if (NumPage > 3)
             {
                 NumPage -= 4;
-                changeListJob();
+                changeListJob(LJ);
             }
         }
 
@@ -249,6 +306,8 @@ namespace WindowsFormsApp1
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
+
+            LJSearch.Clear();
           
             string title = comboBox1.GetItemText(comboBox1.SelectedItem);
             SqlDataAdapter sda;
@@ -263,6 +322,11 @@ namespace WindowsFormsApp1
                 sda = new SqlDataAdapter("SELECT * " + "FROM JOB AS J " + "WHERE J.COMPANY LIKE '%" + txtSearch.Text + "%'", con);
                 sda.Fill(dt);
             }
+            else if(title == "")
+            {
+                changeListJob(LJ);
+                return;
+            }
            
             
 
@@ -275,13 +339,31 @@ namespace WindowsFormsApp1
                 temp.Language = item[3].ToString().Trim();
                 temp.Salary = int.Parse(item[4].ToString().Trim());
                 temp.Description = item[5].ToString().Trim();
-                AmountOfJobs++;
-                LJ.Add(temp);
+                AmountOfJobsSearch++;
+                LJSearch.Add(temp);
             }
-            changeListJob();
+            changeListJob(LJSearch);
         }
 
-       
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tcAdmin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     class identify
