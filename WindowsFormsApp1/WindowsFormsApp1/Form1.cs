@@ -59,7 +59,7 @@ namespace WindowsFormsApp1
 
         //static public SqlConnection con = new SqlConnection("Data Source=34.222.44.149;Initial Catalog=JOBS;Persist Security Info=True;User ID=admin; Password = 123456");
 
-        static public SqlConnection con = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
+        static public SqlConnection con = new SqlConnection("Data Source = CAOMINHTAN; Initial Catalog = JOBS; Persist Security Info=True;User ID = sa; Password=tan225593450");
 
         public Form1()
         {
