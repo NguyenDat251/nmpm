@@ -14,12 +14,12 @@ namespace WindowsFormsApp1
 {
     public partial class SignUpForm : Form
     {
+        static public SqlConnection conSign;
 
-        static public SqlConnection con = new SqlConnection("Data Source = CAOMINHTAN; Initial Catalog = JOBS; Persist Security Info=True;User ID = sa; Password=tan225593450");
-
-        public SignUpForm()
+        public SignUpForm(SqlConnection con)
         {
             InitializeComponent();
+            conSign = con;
             txtPassword.PasswordChar = '●';
             txtConfirmPassword.PasswordChar = '●';
         }
@@ -27,12 +27,12 @@ namespace WindowsFormsApp1
 
 
         private void SignUpForm_Load(object sender, EventArgs e)
-        {     
-                   
+        {
+
         }
 
 
-       
+
         private void btnSignUp_Click(object sender, EventArgs e)
         {
             string type = comboBox1.GetItemText(comboBox1.SelectedItem);
@@ -51,8 +51,8 @@ namespace WindowsFormsApp1
 
             else
             {
-                con.Open();
-                SqlCommand sqlCmd = new SqlCommand("AddUser", con);
+
+                SqlCommand sqlCmd = new SqlCommand("AddUser", conSign);
                 sqlCmd.CommandType = CommandType.StoredProcedure;
                 sqlCmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
                 sqlCmd.Parameters.AddWithValue("@Displayname", txtDisplayName.Text.Trim());
@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
         bool validUsername(string s)
         {
             SqlDataAdapter sda;
-            sda = new SqlDataAdapter("SELECT COUNT(*) FROM ACCOUNT A WHERE A.Username = '" + s + "'", con);
+            sda = new SqlDataAdapter("SELECT COUNT(*) FROM ACCOUNT A WHERE A.Username = '" + s + "'", conSign);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows[0][0].Equals(1))
@@ -94,7 +94,12 @@ namespace WindowsFormsApp1
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
+            conSign.Close();
             this.Close();
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            conSign.Close();
         }
     }
 }

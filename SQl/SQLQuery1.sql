@@ -90,6 +90,29 @@ ADD CONSTRAINT FK_APPLY_CANDIDATE
 FOREIGN KEY (IDCAND)
 REFERENCES CANDIDATE(IDCAND)
 
+create table ACCOUNT
+(
+Username char(50) NOT NULL UNIQUE,
+Password char(50) NOT NULL,
+Displayname nvarchar(50),
+ID int identity PRIMARY KEY,
+type int NOT NULL, -- 1: Applicant ; 2: Employer ; 3: Admin
+)
+
+
+INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('admin', '3', N'TÂN', 3);
+INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('employer', '2', N'ĐẠT', 2);
+INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('applicant', '1', N'CHƯƠNG', 1);
+INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('applicant2', '1', N'CHƯƠNG', 1);
+
+create procedure AddUser
+@Username char(50),
+@Password char(50),
+@Displayname nvarchar(50),
+@type int
+as 
+INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES (@Username, @Password, @Displayname, @type)
+
 /*ALTER TABLE APPLY DROP
 CONSTRAINT FK_APPLY_JOBS
 

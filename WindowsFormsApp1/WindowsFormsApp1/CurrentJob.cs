@@ -23,8 +23,9 @@ namespace WindowsFormsApp1
         public int Salary;
         public string Description;
         public OpenFileDialog openFileDialog = new OpenFileDialog();
-
-        public CurrentJob(string Namee, string Company, string Language, int Salary, string Description)
+        public SqlConnection conCurrentJob;
+        private string idU;
+        public CurrentJob(string Namee, string Company, string Language, int Salary, string Description, SqlConnection con, string idUser)
         {
             InitializeComponent();
 
@@ -34,6 +35,7 @@ namespace WindowsFormsApp1
             lbSalary.Text = Salary.ToString();
             txtBDescription.Text = Description;
             pictBLogo.Image = System.Drawing.Image.FromFile("images\\" + lbCom.Text + ".jpeg");
+            conCurrentJob = con;
         }
 
         private void btnCLose_Click(object sender, EventArgs e)
@@ -84,10 +86,10 @@ namespace WindowsFormsApp1
             //}
 
 
-            using (Form1.con)
+            using (conCurrentJob)
 
             {
-
+                conCurrentJob.Open();
                 //Form1.con.Open();
 
                 FileStream fStream = File.OpenRead(txtCV.Text);
@@ -98,13 +100,13 @@ namespace WindowsFormsApp1
 
                 fStream.Close();
 
-                using (SqlCommand cmd = new SqlCommand("insert into SavePDFTable " + "(PDFFile)values(@data)", Form1.con))
+                using (SqlCommand cmd = new SqlCommand("insert into SavePDFTable " + "(PDFFile)values(@data)", conCurrentJob))
                 {
                     cmd.Parameters.AddWithValue("@data", contents);
 
                     cmd.ExecuteNonQuery();
                 }
-                Form1.con.Close();
+                conCurrentJob.Close();
             }
             
             Document doc = new Document();
@@ -122,12 +124,12 @@ namespace WindowsFormsApp1
             doc.Close();
             string ToSaveFileTo = "CV\\1.JPEG";
 
-            using (Form1.con)
+            using (conCurrentJob)
             {
-                Form1.con = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
-                Form1.con.Open();
+                //conCurrentJob = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
+                conCurrentJob.Open();
 
-                using (SqlCommand cmd = new SqlCommand("select PDFFile from SavePDFTable  where ID='" + "9" + "' ", Form1.con))
+                using (SqlCommand cmd = new SqlCommand("select PDFFile from SavePDFTable  where ID='" + "9" + "' ", conCurrentJob))
                 {
                     using (SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.Default))
                     {
