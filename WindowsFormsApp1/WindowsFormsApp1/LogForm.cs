@@ -43,15 +43,15 @@ namespace WindowsFormsApp1
                 //{
                 foreach (DataRow item in dt.Rows)
                 {
-                    idUser = (item[2].ToString());
-                    type = (item[3].ToString());
+                    idUser = (item[4].ToString());
+                    type = (item[5].ToString());
                 }
                 //  }
 
 
 
                
-                Job J = new Job(con, idUser);
+                Job J = new Job(con, idUser, type);
                 //con.Close
                 this.Hide();
                 J.ShowDialog();

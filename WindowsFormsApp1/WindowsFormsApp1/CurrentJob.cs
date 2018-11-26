@@ -16,32 +16,42 @@ namespace WindowsFormsApp1
 {
     public partial class CurrentJob : Form
     {
-        public int idx;
-        public string Namee;
-        public string Company;
-        public string Language;
-        public int Salary;
-        public string Description;
+        //public int idx;
+        //public string Namee;
+        //public string Company;
+        //public string Language;
+        //public int Salary;
+        //public string Description;
         public OpenFileDialog openFileDialog = new OpenFileDialog();
-        public SqlConnection conCurrentJob;
-        private string idU;
-        public CurrentJob(string Namee, string Company, string Language, int Salary, string Description, SqlConnection con, string idUser)
+        Job.Jobs TheJob;
+        public SqlConnection conCurrentJob = new SqlConnection();
+        private string idU, typeU;
+        public CurrentJob(Job.Jobs CurJob, SqlConnection con, string idUser, string typeUser)
         {
             InitializeComponent();
 
-            lbName.Text = Namee;
-            lbCom.Text = Company;
-            lbLang.Text = Language;
-            lbSalary.Text = Salary.ToString();
-            txtBDescription.Text = Description;
-            pictBLogo.Image = System.Drawing.Image.FromFile("images\\" + lbCom.Text + ".jpeg");
+            //lbName.Text = Namee;
+            //lbCom.Text = Company;
+            //lbLang.Text = Language;
+            //lbSalary.Text = Salary.ToString();
+            //txtBDescription.Text = Description;
+            TheJob = CurJob;
+            pictBLogo.Image = System.Drawing.Image.FromFile("images\\" + TheJob.Company + ".jpeg");
+            lbName.Text = CurJob.Name;
+            lbLang.Text = CurJob.Language;
+            lbCom.Text = CurJob.Company;
+            lbSalary.Text = CurJob.Salary;
+            txtBDescription.Text = CurJob.Description;
+
             conCurrentJob = con;
+            idU = idUser;
+            typeU = typeUser;
         }
 
-        private void btnCLose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        //private void btnCLose_Click(object sender, EventArgs e)
+        //{
+        //    this.Close();
+        //}
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
@@ -89,7 +99,7 @@ namespace WindowsFormsApp1
             using (conCurrentJob)
 
             {
-                conCurrentJob.Open();
+                //conCurrentJob.Open();
                 //Form1.con.Open();
 
                 FileStream fStream = File.OpenRead(txtCV.Text);
@@ -100,66 +110,78 @@ namespace WindowsFormsApp1
 
                 fStream.Close();
 
-                using (SqlCommand cmd = new SqlCommand("insert into SavePDFTable " + "(PDFFile)values(@data)", conCurrentJob))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@data", contents);
-
-                    cmd.ExecuteNonQuery();
+                    using (SqlCommand cmd = new SqlCommand("insert into APPLY " + "(PDFFile, IDCAND, IDJOB)values(@data, @id, @idJ)", conCurrentJob))
+                    {
+                        cmd.Parameters.AddWithValue("@data", contents);
+                        cmd.Parameters.AddWithValue("@id", idU);
+                        cmd.Parameters.AddWithValue("@idJ", TheJob.ID);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
-                conCurrentJob.Close();
+                catch
+                {
+                    MessageBox.Show("Bạn đã đăng kí rồi");
+                }
+
+
+                //conCurrentJob.Close();
             }
             
-            Document doc = new Document();
+            //Document doc = new Document();
             /*Tại sao phải mở file doc ra rồi thêm 1 chữ a vào xong đóng lại?
             mục đích mấy dòng này là tạo ra file dpf thôi.
             Nhưng mà khi xuống dòng lệnh using (System.IO.FileStream fs = new System.IO.FileStream(ToSaveFileTo, System.IO.FileMode.Create, System.IO.FileAccess.ReadWrite))
             thì nó lại không cho mở file ra chép vô vì cái doc đang mở file đó rồi, nên trước hết phải đóng lại.
             Nhưng mà visual lại không cho đóng file tự tiện vậy, đại khái lỗi là trong file pdf không có dữ liệu nào nên không cho đóng
             do đó thêm đại 1 chữ a vô cho nó đóng được, dù gì tí nữa xuống kia cũng ghi đè lên lại hết*/
-            PdfWriter.GetInstance(doc, new FileStream("CV\\NQD.pdf", FileMode.Create));
 
-            doc.Open();
-            Paragraph p1 = new Paragraph("a");
-            doc.Add(p1);
-            doc.Close();
-            string ToSaveFileTo = "CV\\1.JPEG";
+            #region SAVECV
+            //PdfWriter.GetInstance(doc, new FileStream("CV\\NQD.pdf", FileMode.Create));
 
-            using (conCurrentJob)
-            {
-                //conCurrentJob = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
-                conCurrentJob.Open();
+            //doc.Open();
+            //Paragraph p1 = new Paragraph("a");
+            //doc.Add(p1);
+            //doc.Close();
+            //string ToSaveFileTo = "CV\\1.JPEG";
 
-                using (SqlCommand cmd = new SqlCommand("select PDFFile from SavePDFTable  where ID='" + "9" + "' ", conCurrentJob))
-                {
-                    using (SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.Default))
-                    {
-                        if (dr.Read())
-                        {
-                            byte[] fileData = (byte[])dr.GetValue(0);
+            //using (conCurrentJob)
+            //{
+            //    //conCurrentJob = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
+            //    //conCurrentJob.Open();
 
-                            using (System.IO.FileStream fs = new System.IO.FileStream(ToSaveFileTo
-                                , System.IO.FileMode.Create, System.IO.FileAccess.ReadWrite))
-                            {
-                                using (System.IO.BinaryWriter bw = new System.IO.BinaryWriter(fs))
-                                {
-                                    bw.Write(fileData);
+            //    using (SqlCommand cmd = new SqlCommand("select PDFFile from SavePDFTable  where ID='" + "9" + "' ", conCurrentJob))
+            //    {
+            //        using (SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.Default))
+            //        {
+            //            if (dr.Read())
+            //            {
+            //                byte[] fileData = (byte[])dr.GetValue(0);
 
-                                    bw.Close();
+            //                using (System.IO.FileStream fs = new System.IO.FileStream(ToSaveFileTo
+            //                    , System.IO.FileMode.Create, System.IO.FileAccess.ReadWrite))
+            //                {
+            //                    using (System.IO.BinaryWriter bw = new System.IO.BinaryWriter(fs))
+            //                    {
+            //                        bw.Write(fileData);
 
-                                    MessageBox.Show("Done");
-                                      
-                                }
+            //                        bw.Close();
 
-                            }
+            //                        MessageBox.Show("Done");
+            //                    }
 
-                        }
+            //                }
+
+            //            }
                         
-                        dr.Close();
-                    }
+            //            dr.Close();
+            //        }
 
-                }
+            //    }
 
-            }
+            //}
+            #endregion
         }
 
         private void btnCV_Click(object sender, EventArgs e)

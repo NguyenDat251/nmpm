@@ -13,13 +13,6 @@ CREATE TABLE JOB
 	PRIMARY KEY(ID)
 )
 
-DROP TABLE JOBS
-
-ALTER TABLE JOBS
-ADD ID 
-
-
-PRIMARY KEY (ID)
 
 INSERT INTO JOB VALUES (1,N'FRONT-END ENGINEER', N'VNG',
 						  N'JAVA', 1000, N'University degree in Computer Sciences, or equivalent.\n
@@ -72,6 +65,7 @@ INSERT INTO CANDIDATE VALUES (1, N'Nguyễn Quốc Đạt', 20);
 INSERT INTO CANDIDATE VALUES (2, N'Phạm Hoàng Chương', 23);
 INSERT INTO CANDIDATE VALUES (3, N'Cao Minh Tân', 27);
 INSERT INTO CANDIDATE VALUES (4, N'Nguyễn Nhật Duy', 30);
+INSERT INTO CANDIDATE VALUES (5, N'Nguyễn Nhật Duy', 30);
 
 INSERT INTO APPLY VALUES (1, 3);
 INSERT INTO APPLY VALUES (2, 5);
@@ -95,13 +89,15 @@ create table ACCOUNT
 Username char(50) NOT NULL UNIQUE,
 Password char(50) NOT NULL,
 Displayname nvarchar(50),
+Company nvarchar(100),
 ID int identity PRIMARY KEY,
 type int NOT NULL, -- 1: Applicant ; 2: Employer ; 3: Admin
 )
 
 
+
 INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('admin', '3', N'TÂN', 3);
-INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('employer', '2', N'ĐẠT', 2);
+INSERT INTO ACCOUNT (Username, Password, Displayname, Company , type) VALUES ('employer', '2', N'ĐẠT', N'VNG', 2);
 INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('applicant', '1', N'CHƯƠNG', 1);
 INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('applicant2', '1', N'CHƯƠNG', 1);
 
@@ -113,8 +109,11 @@ create procedure AddUser
 as 
 INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES (@Username, @Password, @Displayname, @type)
 
+ALTER TABLE APPLY
+ADD [PDFFile] [varbinary](max) NULL
+
 /*ALTER TABLE APPLY DROP
 CONSTRAINT FK_APPLY_JOBS
 
 DROP TABLE SavePDFTable
-DROP TABLE APPLY*/
+DROP TABLE ACCOUNT*/

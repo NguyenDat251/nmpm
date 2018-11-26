@@ -17,26 +17,34 @@ namespace WindowsFormsApp1
         {
             public string NameCandidate;
             public string NameJob;
+            public string IDCANDIDATE;
+            public string IDJOB;
         }
 
         int NumPageApply = 0;
         int AmountOfApply = 0;
         List<Aplly> LApply = new List<Aplly>();
         SqlConnection conEmp;
-        string idU;
-        public Employee(SqlConnection con, string idUser)
+        string idU, typeU;
+        public Employee(SqlConnection con, string idUser, string typeUser)
         {
             InitializeComponent();
+           // con.Close();
+            //con.Open();
             conEmp = con;
+            //con.Close();
+            //conEmp.Open();
+            idU = idUser;
+            typeU = typeUser;
             loadApplyList();
         }
 
         void loadApplyList()
         {
             //conEmp.Open();
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT	C.NAME, J.NAME " +
-                "FROM CANDIDATE AS C, APPLY AS A, JOB AS J " +
-                "WHERE C.IDCAND = A.IDCAND AND A.IDJOB = J.ID", conEmp);
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT	AC2.Displayname, J.NAME, A.IDCAND, A.IDJOB " +
+                "FROM APPLY AS A, JOB AS J, ACCOUNT AS AC,  ACCOUNT AS AC2 " +
+                "WHERE A.IDJOB = J.ID AND AC.ID = " + idU + " AND J.COMPANY = AC.Company AND AC2.ID = A.IDCAND", conEmp);
             DataTable dt = new DataTable();
             sda.Fill(dt);
 
@@ -46,6 +54,8 @@ namespace WindowsFormsApp1
                 Aplly temp;
                 temp.NameCandidate = item[0].ToString().Trim();
                 temp.NameJob = item[1].ToString().Trim();
+                temp.IDCANDIDATE = item[2].ToString().Trim();
+                temp.IDJOB = item[3].ToString().Trim();
 
                 AmountOfApply++;
                 LApply.Add(temp);
@@ -87,6 +97,18 @@ namespace WindowsFormsApp1
                 NumPageApply += 4;
                 changeListApply();
             }
+        }
+
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            //SqlDataAdapter sda = new SqlDataAdapter("DELETE FROM APPLY  WHERE APPLY.IDCAND = " + LApply[0].IDCANDIDATE +
+            //                                        " AND APPLY.IDJOB = " + LApply[0].IDJOB, conEmp);
+            SqlCommand sda = new SqlCommand("DELETE FROM APPLY  WHERE APPLY.IDCAND = " + LApply[0].IDCANDIDATE +
+                                                    " AND APPLY.IDJOB = " + LApply[0].IDJOB, conEmp);
+            sda.ExecuteNonQuery();
+            LApply.Clear();
+            loadApplyList();
+
         }
 
         private void btnPre_Click(object sender, EventArgs e)

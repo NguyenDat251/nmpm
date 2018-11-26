@@ -14,13 +14,13 @@ namespace WindowsFormsApp1
     public partial class Job : Form
     {
         
-        struct Jobs
+        public struct Jobs
         {
-            public int ID;
+            public string ID;
             public string Name;
             public string Company;
             public string Language;
-            public int Salary;
+            public string Salary;
             public string Description;
         }
 
@@ -40,15 +40,17 @@ namespace WindowsFormsApp1
         int AmountOfJobsSearch = 0;
         
         private SqlConnection conJob = new SqlConnection();
-        private string idU;
-        public Job(SqlConnection con, string idUser)
+        private string idU, typeU;
+        public Job(SqlConnection con, string idUser, string type)
         {
             InitializeComponent();
              //SqlConnection conJob = new SqlConnection(con);
             conJob = con;
            
-            Employee EmployeeWindow = new Employee(con, idUser);
-            Admin AdminWindow = new Admin(con);
+            //Employee EmployeeWindow = new Employee(con, idUser, type);
+            idU = idUser.Trim();
+            typeU = type.Trim();
+            //Admin AdminWindow = new Admin(con);
             loadJobList();
         }
 
@@ -65,11 +67,11 @@ namespace WindowsFormsApp1
             foreach (DataRow item in dt.Rows)
             {
                 Jobs temp;
-                temp.ID = int.Parse(item[0].ToString().Trim());
+                temp.ID = item[0].ToString().Trim();
                 temp.Name = item[1].ToString().Trim();
                 temp.Company = item[2].ToString().Trim();
                 temp.Language = item[3].ToString().Trim();
-                temp.Salary = int.Parse(item[4].ToString().Trim());
+                temp.Salary = item[4].ToString().Trim();
                 temp.Description = item[5].ToString().Trim();
                 AmountOfJobs++;
                 LJ.Add(temp);
@@ -111,29 +113,26 @@ namespace WindowsFormsApp1
 
         private void lbName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage].Name, LJ[NumPage].Company, LJ[NumPage].Language, LJ[NumPage].Salary, LJ[NumPage].Description, conJob, idU);
+            CurrentJob f = new CurrentJob(LJ[NumPage], conJob, idU, typeU);
 
             f.ShowDialog();
         }
 
         private void lbName2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage + 1].Name, LJ[NumPage + 1].Company, LJ[NumPage + 1].Language, LJ[NumPage + 1].Salary, LJ[NumPage + 1].Description, conJob, idU);
-
+            CurrentJob f = new CurrentJob(LJ[NumPage + 1], conJob, idU, typeU);
             f.ShowDialog();
         }
 
         private void lbName3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage + 2].Name, LJ[NumPage + 2].Company, LJ[NumPage + 2].Language, LJ[NumPage + 2].Salary, LJ[NumPage + 2].Description, conJob, idU);
-
+            CurrentJob f = new CurrentJob(LJ[NumPage + 2], conJob, idU, typeU);
             f.ShowDialog();
         }
 
         private void lbName4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CurrentJob f = new CurrentJob(LJ[NumPage + 3].Name, LJ[NumPage + 3].Company, LJ[NumPage + 3].Language, LJ[NumPage + 3].Salary, LJ[NumPage + 3].Description, conJob, idU);
-
+            CurrentJob f = new CurrentJob(LJ[NumPage + 3], conJob, idU, typeU);
             f.ShowDialog();
         }
 
@@ -152,6 +151,17 @@ namespace WindowsFormsApp1
             {
                 NumPage -= 4;
                 changeListJob(LJ);
+            }
+        }
+
+        private void btnEmployee_Click(object sender, EventArgs e)
+        {
+            if (typeU != "2")
+                MessageBox.Show("Bạn không phải là người tuyển việc");
+            else
+            {
+                Employee E = new Employee(conJob, idU, typeU);
+                E.ShowDialog();
             }
         }
 
@@ -186,11 +196,11 @@ namespace WindowsFormsApp1
             foreach (DataRow item in dt.Rows)
             {
                 Jobs temp;
-                temp.ID = int.Parse(item[0].ToString().Trim());
+                temp.ID = item[0].ToString().Trim();
                 temp.Name = item[1].ToString().Trim();
                 temp.Company = item[2].ToString().Trim();
                 temp.Language = item[3].ToString().Trim();
-                temp.Salary = int.Parse(item[4].ToString().Trim());
+                temp.Salary = item[4].ToString().Trim();
                 temp.Description = item[5].ToString().Trim();
                 AmountOfJobsSearch++;
                 LJSearch.Add(temp);

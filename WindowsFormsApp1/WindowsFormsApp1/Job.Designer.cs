@@ -53,8 +53,9 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnBACK = new System.Windows.Forms.Button();
             this.btnNEXT = new System.Windows.Forms.Button();
+            this.btnBACK = new System.Windows.Forms.Button();
+            this.btnEmployee = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBox4)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBox3)).BeginInit();
@@ -341,16 +342,6 @@
             this.panel6.Size = new System.Drawing.Size(146, 59);
             this.panel6.TabIndex = 8;
             // 
-            // btnBACK
-            // 
-            this.btnBACK.Location = new System.Drawing.Point(0, 0);
-            this.btnBACK.Name = "btnBACK";
-            this.btnBACK.Size = new System.Drawing.Size(61, 59);
-            this.btnBACK.TabIndex = 0;
-            this.btnBACK.Text = "Back";
-            this.btnBACK.UseVisualStyleBackColor = true;
-            this.btnBACK.Click += new System.EventHandler(this.btnBACK_Click);
-            // 
             // btnNEXT
             // 
             this.btnNEXT.Location = new System.Drawing.Point(84, 0);
@@ -361,11 +352,32 @@
             this.btnNEXT.UseVisualStyleBackColor = true;
             this.btnNEXT.Click += new System.EventHandler(this.btnNEXT_Click);
             // 
+            // btnBACK
+            // 
+            this.btnBACK.Location = new System.Drawing.Point(0, 0);
+            this.btnBACK.Name = "btnBACK";
+            this.btnBACK.Size = new System.Drawing.Size(61, 59);
+            this.btnBACK.TabIndex = 0;
+            this.btnBACK.Text = "Back";
+            this.btnBACK.UseVisualStyleBackColor = true;
+            this.btnBACK.Click += new System.EventHandler(this.btnBACK_Click);
+            // 
+            // btnEmployee
+            // 
+            this.btnEmployee.Location = new System.Drawing.Point(16, 13);
+            this.btnEmployee.Name = "btnEmployee";
+            this.btnEmployee.Size = new System.Drawing.Size(75, 23);
+            this.btnEmployee.TabIndex = 9;
+            this.btnEmployee.Text = "Employee";
+            this.btnEmployee.UseVisualStyleBackColor = true;
+            this.btnEmployee.Click += new System.EventHandler(this.btnEmployee_Click);
+            // 
             // Job
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 528);
+            this.Controls.Add(this.btnEmployee);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.panel5);
@@ -421,5 +433,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnNEXT;
         private System.Windows.Forms.Button btnBACK;
+        private System.Windows.Forms.Button btnEmployee;
     }
 }

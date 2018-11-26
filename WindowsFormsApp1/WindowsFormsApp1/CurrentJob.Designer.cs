@@ -169,7 +169,7 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Trở lại";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnCLose_Click);
+            //this.btnClose.Click += new System.EventHandler(this.btnCLose_Click);
             // 
             // panel2
             // 

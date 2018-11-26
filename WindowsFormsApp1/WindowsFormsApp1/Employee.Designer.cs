@@ -33,26 +33,26 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.pnlApply4 = new System.Windows.Forms.Panel();
             this.lbJob4 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnNo4 = new System.Windows.Forms.Button();
+            this.btnYes4 = new System.Windows.Forms.Button();
             this.lbCandidate4 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.pnlApply3 = new System.Windows.Forms.Panel();
             this.lbJob3 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnNo3 = new System.Windows.Forms.Button();
+            this.btnYes3 = new System.Windows.Forms.Button();
             this.lbCandidate3 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.pnlApply2 = new System.Windows.Forms.Panel();
             this.lbJob2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnNo2 = new System.Windows.Forms.Button();
+            this.btnYes2 = new System.Windows.Forms.Button();
             this.lbCandidate2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.pnlApply1 = new System.Windows.Forms.Panel();
             this.lbJob1 = new System.Windows.Forms.Label();
-            this.btn3 = new System.Windows.Forms.Button();
-            this.btn2 = new System.Windows.Forms.Button();
+            this.btnNo1 = new System.Windows.Forms.Button();
+            this.btnYes1 = new System.Windows.Forms.Button();
             this.lbCandidate1 = new System.Windows.Forms.Label();
             this.btn1 = new System.Windows.Forms.Button();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -104,8 +104,8 @@
             // 
             this.pnlApply4.BackColor = System.Drawing.Color.Snow;
             this.pnlApply4.Controls.Add(this.lbJob4);
-            this.pnlApply4.Controls.Add(this.button7);
-            this.pnlApply4.Controls.Add(this.button8);
+            this.pnlApply4.Controls.Add(this.btnNo4);
+            this.pnlApply4.Controls.Add(this.btnYes4);
             this.pnlApply4.Controls.Add(this.lbCandidate4);
             this.pnlApply4.Controls.Add(this.button9);
             this.pnlApply4.Location = new System.Drawing.Point(0, 228);
@@ -123,29 +123,29 @@
             this.lbJob4.TabIndex = 5;
             this.lbJob4.Text = "label7";
             // 
-            // button7
+            // btnNo4
             // 
-            this.button7.BackColor = System.Drawing.Color.Red;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(434, 0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 69);
-            this.button7.TabIndex = 4;
-            this.button7.Text = "Loại";
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnNo4.BackColor = System.Drawing.Color.Red;
+            this.btnNo4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNo4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNo4.Location = new System.Drawing.Point(434, 0);
+            this.btnNo4.Name = "btnNo4";
+            this.btnNo4.Size = new System.Drawing.Size(75, 69);
+            this.btnNo4.TabIndex = 4;
+            this.btnNo4.Text = "Loại";
+            this.btnNo4.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // btnYes4
             // 
-            this.button8.BackColor = System.Drawing.Color.Chartreuse;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button8.Location = new System.Drawing.Point(353, 0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 69);
-            this.button8.TabIndex = 4;
-            this.button8.Text = "Đồng ý";
-            this.button8.UseVisualStyleBackColor = false;
+            this.btnYes4.BackColor = System.Drawing.Color.Chartreuse;
+            this.btnYes4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYes4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnYes4.Location = new System.Drawing.Point(353, 0);
+            this.btnYes4.Name = "btnYes4";
+            this.btnYes4.Size = new System.Drawing.Size(75, 69);
+            this.btnYes4.TabIndex = 4;
+            this.btnYes4.Text = "Đồng ý";
+            this.btnYes4.UseVisualStyleBackColor = false;
             // 
             // lbCandidate4
             // 
@@ -170,8 +170,8 @@
             // 
             this.pnlApply3.BackColor = System.Drawing.Color.Snow;
             this.pnlApply3.Controls.Add(this.lbJob3);
-            this.pnlApply3.Controls.Add(this.button4);
-            this.pnlApply3.Controls.Add(this.button5);
+            this.pnlApply3.Controls.Add(this.btnNo3);
+            this.pnlApply3.Controls.Add(this.btnYes3);
             this.pnlApply3.Controls.Add(this.lbCandidate3);
             this.pnlApply3.Controls.Add(this.button6);
             this.pnlApply3.Location = new System.Drawing.Point(0, 150);
@@ -189,29 +189,29 @@
             this.lbJob3.TabIndex = 5;
             this.lbJob3.Text = "label5";
             // 
-            // button4
+            // btnNo3
             // 
-            this.button4.BackColor = System.Drawing.Color.Red;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(434, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 69);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Loại";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnNo3.BackColor = System.Drawing.Color.Red;
+            this.btnNo3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNo3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNo3.Location = new System.Drawing.Point(434, 0);
+            this.btnNo3.Name = "btnNo3";
+            this.btnNo3.Size = new System.Drawing.Size(75, 69);
+            this.btnNo3.TabIndex = 4;
+            this.btnNo3.Text = "Loại";
+            this.btnNo3.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnYes3
             // 
-            this.button5.BackColor = System.Drawing.Color.Chartreuse;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(353, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 69);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Đồng ý";
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnYes3.BackColor = System.Drawing.Color.Chartreuse;
+            this.btnYes3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYes3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnYes3.Location = new System.Drawing.Point(353, 0);
+            this.btnYes3.Name = "btnYes3";
+            this.btnYes3.Size = new System.Drawing.Size(75, 69);
+            this.btnYes3.TabIndex = 4;
+            this.btnYes3.Text = "Đồng ý";
+            this.btnYes3.UseVisualStyleBackColor = false;
             // 
             // lbCandidate3
             // 
@@ -236,8 +236,8 @@
             // 
             this.pnlApply2.BackColor = System.Drawing.Color.Snow;
             this.pnlApply2.Controls.Add(this.lbJob2);
-            this.pnlApply2.Controls.Add(this.button1);
-            this.pnlApply2.Controls.Add(this.button2);
+            this.pnlApply2.Controls.Add(this.btnNo2);
+            this.pnlApply2.Controls.Add(this.btnYes2);
             this.pnlApply2.Controls.Add(this.lbCandidate2);
             this.pnlApply2.Controls.Add(this.button3);
             this.pnlApply2.Location = new System.Drawing.Point(0, 75);
@@ -255,29 +255,29 @@
             this.lbJob2.TabIndex = 5;
             this.lbJob2.Text = "label3";
             // 
-            // button1
+            // btnNo2
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(434, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 69);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Loại";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnNo2.BackColor = System.Drawing.Color.Red;
+            this.btnNo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNo2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNo2.Location = new System.Drawing.Point(434, 0);
+            this.btnNo2.Name = "btnNo2";
+            this.btnNo2.Size = new System.Drawing.Size(75, 69);
+            this.btnNo2.TabIndex = 4;
+            this.btnNo2.Text = "Loại";
+            this.btnNo2.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnYes2
             // 
-            this.button2.BackColor = System.Drawing.Color.Chartreuse;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(353, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 69);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Đồng ý";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnYes2.BackColor = System.Drawing.Color.Chartreuse;
+            this.btnYes2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYes2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnYes2.Location = new System.Drawing.Point(353, 0);
+            this.btnYes2.Name = "btnYes2";
+            this.btnYes2.Size = new System.Drawing.Size(75, 69);
+            this.btnYes2.TabIndex = 4;
+            this.btnYes2.Text = "Đồng ý";
+            this.btnYes2.UseVisualStyleBackColor = false;
             // 
             // lbCandidate2
             // 
@@ -302,8 +302,8 @@
             // 
             this.pnlApply1.BackColor = System.Drawing.Color.Snow;
             this.pnlApply1.Controls.Add(this.lbJob1);
-            this.pnlApply1.Controls.Add(this.btn3);
-            this.pnlApply1.Controls.Add(this.btn2);
+            this.pnlApply1.Controls.Add(this.btnNo1);
+            this.pnlApply1.Controls.Add(this.btnYes1);
             this.pnlApply1.Controls.Add(this.lbCandidate1);
             this.pnlApply1.Controls.Add(this.btn1);
             this.pnlApply1.Location = new System.Drawing.Point(0, 0);
@@ -321,29 +321,30 @@
             this.lbJob1.TabIndex = 5;
             this.lbJob1.Text = "label2";
             // 
-            // btn3
+            // btnNo1
             // 
-            this.btn3.BackColor = System.Drawing.Color.Red;
-            this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn3.Location = new System.Drawing.Point(434, 0);
-            this.btn3.Name = "btn3";
-            this.btn3.Size = new System.Drawing.Size(75, 69);
-            this.btn3.TabIndex = 4;
-            this.btn3.Text = "Loại";
-            this.btn3.UseVisualStyleBackColor = false;
+            this.btnNo1.BackColor = System.Drawing.Color.Red;
+            this.btnNo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNo1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNo1.Location = new System.Drawing.Point(434, 0);
+            this.btnNo1.Name = "btnNo1";
+            this.btnNo1.Size = new System.Drawing.Size(75, 69);
+            this.btnNo1.TabIndex = 4;
+            this.btnNo1.Text = "Loại";
+            this.btnNo1.UseVisualStyleBackColor = false;
             // 
-            // btn2
+            // btnYes1
             // 
-            this.btn2.BackColor = System.Drawing.Color.Chartreuse;
-            this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn2.Location = new System.Drawing.Point(353, 0);
-            this.btn2.Name = "btn2";
-            this.btn2.Size = new System.Drawing.Size(75, 69);
-            this.btn2.TabIndex = 4;
-            this.btn2.Text = "Đồng ý";
-            this.btn2.UseVisualStyleBackColor = false;
+            this.btnYes1.BackColor = System.Drawing.Color.Chartreuse;
+            this.btnYes1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYes1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnYes1.Location = new System.Drawing.Point(353, 0);
+            this.btnYes1.Name = "btnYes1";
+            this.btnYes1.Size = new System.Drawing.Size(75, 69);
+            this.btnYes1.TabIndex = 4;
+            this.btnYes1.Text = "Đồng ý";
+            this.btnYes1.UseVisualStyleBackColor = false;
+            this.btnYes1.Click += new System.EventHandler(this.btn1_Click);
             // 
             // lbCandidate1
             // 
@@ -424,26 +425,26 @@
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel pnlApply4;
         private System.Windows.Forms.Label lbJob4;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnNo4;
+        private System.Windows.Forms.Button btnYes4;
         private System.Windows.Forms.Label lbCandidate4;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Panel pnlApply3;
         private System.Windows.Forms.Label lbJob3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnNo3;
+        private System.Windows.Forms.Button btnYes3;
         private System.Windows.Forms.Label lbCandidate3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel pnlApply2;
         private System.Windows.Forms.Label lbJob2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnNo2;
+        private System.Windows.Forms.Button btnYes2;
         private System.Windows.Forms.Label lbCandidate2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel pnlApply1;
         private System.Windows.Forms.Label lbJob1;
-        private System.Windows.Forms.Button btn3;
-        private System.Windows.Forms.Button btn2;
+        private System.Windows.Forms.Button btnNo1;
+        private System.Windows.Forms.Button btnYes1;
         private System.Windows.Forms.Label lbCandidate1;
         private System.Windows.Forms.Button btn1;
         private System.Windows.Forms.Panel panel12;
