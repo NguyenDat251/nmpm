@@ -134,6 +134,7 @@
             this.btnNo4.TabIndex = 4;
             this.btnNo4.Text = "Loại";
             this.btnNo4.UseVisualStyleBackColor = false;
+            this.btnNo4.Click += new System.EventHandler(this.btn4_Click);
             // 
             // btnYes4
             // 
@@ -146,6 +147,7 @@
             this.btnYes4.TabIndex = 4;
             this.btnYes4.Text = "Đồng ý";
             this.btnYes4.UseVisualStyleBackColor = false;
+            this.btnYes4.Click += new System.EventHandler(this.btn4_Click);
             // 
             // lbCandidate4
             // 
@@ -200,6 +202,7 @@
             this.btnNo3.TabIndex = 4;
             this.btnNo3.Text = "Loại";
             this.btnNo3.UseVisualStyleBackColor = false;
+            this.btnNo3.Click += new System.EventHandler(this.btn3_Click);
             // 
             // btnYes3
             // 
@@ -212,6 +215,7 @@
             this.btnYes3.TabIndex = 4;
             this.btnYes3.Text = "Đồng ý";
             this.btnYes3.UseVisualStyleBackColor = false;
+            this.btnYes3.Click += new System.EventHandler(this.btn3_Click);
             // 
             // lbCandidate3
             // 
@@ -266,6 +270,7 @@
             this.btnNo2.TabIndex = 4;
             this.btnNo2.Text = "Loại";
             this.btnNo2.UseVisualStyleBackColor = false;
+            this.btnNo2.Click += new System.EventHandler(this.btn2_Click);
             // 
             // btnYes2
             // 
@@ -278,6 +283,7 @@
             this.btnYes2.TabIndex = 4;
             this.btnYes2.Text = "Đồng ý";
             this.btnYes2.UseVisualStyleBackColor = false;
+            this.btnYes2.Click += new System.EventHandler(this.btn2_Click);
             // 
             // lbCandidate2
             // 
@@ -332,6 +338,7 @@
             this.btnNo1.TabIndex = 4;
             this.btnNo1.Text = "Loại";
             this.btnNo1.UseVisualStyleBackColor = false;
+            this.btnNo1.Click += new System.EventHandler(this.btn1_Click);
             // 
             // btnYes1
             // 
@@ -364,6 +371,7 @@
             this.btn1.TabIndex = 4;
             this.btn1.Text = "Xem CV";
             this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.Click += new System.EventHandler(this.btnCV_Click);
             // 
             // panel12
             // 

@@ -23,3 +23,5 @@ C:\Users\User\Desktop\Assignment\GitHub\NMCNPM\nmpm\WindowsFormsApp1\WindowsForm
 C:\Users\User\Desktop\Assignment\GitHub\NMCNPM\nmpm\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\Assignment\GitHub\NMCNPM\nmpm\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.LogForm.resources
 C:\Users\User\Desktop\Assignment\GitHub\NMCNPM\nmpm\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.SignUpForm.resources
+E:\github\nmpm\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\github\nmpm\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.dll

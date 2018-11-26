@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace WindowsFormsApp1
 {
@@ -101,14 +105,94 @@ namespace WindowsFormsApp1
 
         private void btn1_Click(object sender, EventArgs e)
         {
-            //SqlDataAdapter sda = new SqlDataAdapter("DELETE FROM APPLY  WHERE APPLY.IDCAND = " + LApply[0].IDCANDIDATE +
-            //                                        " AND APPLY.IDJOB = " + LApply[0].IDJOB, conEmp);
             SqlCommand sda = new SqlCommand("DELETE FROM APPLY  WHERE APPLY.IDCAND = " + LApply[0].IDCANDIDATE +
                                                     " AND APPLY.IDJOB = " + LApply[0].IDJOB, conEmp);
             sda.ExecuteNonQuery();
             LApply.Clear();
             loadApplyList();
 
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            SqlCommand sda = new SqlCommand("DELETE FROM APPLY  WHERE APPLY.IDCAND = " + LApply[1].IDCANDIDATE +
+                                                    " AND APPLY.IDJOB = " + LApply[1].IDJOB, conEmp);
+            sda.ExecuteNonQuery();
+            LApply.Clear();
+            loadApplyList();
+
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            SqlCommand sda = new SqlCommand("DELETE FROM APPLY  WHERE APPLY.IDCAND = " + LApply[2].IDCANDIDATE +
+                                                    " AND APPLY.IDJOB = " + LApply[2].IDJOB, conEmp);
+            sda.ExecuteNonQuery();
+            LApply.Clear();
+            loadApplyList();
+
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            SqlCommand sda = new SqlCommand("DELETE FROM APPLY  WHERE APPLY.IDCAND = " + LApply[3].IDCANDIDATE +
+                                                    " AND APPLY.IDJOB = " + LApply[3].IDJOB, conEmp);
+            sda.ExecuteNonQuery();
+            LApply.Clear();
+            loadApplyList();
+
+        }
+
+        private void btnCV_Click(object sender, EventArgs e)
+        {
+            #region SAVECV
+            Document doc = new Document();
+            string pathCV = "CV\\" + LApply[0].NameCandidate + ".pdf";
+            PdfWriter.GetInstance(doc, new FileStream(pathCV, FileMode.Create));
+
+            doc.Open();
+            Paragraph p1 = new Paragraph("a");
+            doc.Add(p1);
+            doc.Close();
+            
+
+            using (conEmp)
+            {
+                //conCurrentJob = new SqlConnection("Data Source=DESKTOP-E1R7M37;Initial Catalog=JOBS;Integrated Security=True");
+                //conCurrentJob.Open();
+
+                using (SqlCommand cmd = new SqlCommand("select PDFFile from APPLY where APPLY.IDCAND = " + LApply[0].IDCANDIDATE +
+                                                    " AND APPLY.IDJOB = " + LApply[0].IDJOB, conEmp))
+                {
+                    using (SqlDataReader dr = cmd.ExecuteReader(System.Data.CommandBehavior.Default))
+                    {
+                        if (dr.Read())
+                        {
+                            byte[] fileData = (byte[])dr.GetValue(0);
+
+                            using (System.IO.FileStream fs = new System.IO.FileStream(pathCV
+                                , System.IO.FileMode.Create, System.IO.FileAccess.ReadWrite))
+                            {
+                                using (System.IO.BinaryWriter bw = new System.IO.BinaryWriter(fs))
+                                {
+                                    bw.Write(fileData);
+
+                                    bw.Close();
+
+                                    MessageBox.Show("Done");
+                                }
+
+                            }
+
+                        }
+
+                        dr.Close();
+                    }
+
+                }
+
+            }
+            #endregion
         }
 
         private void btnPre_Click(object sender, EventArgs e)

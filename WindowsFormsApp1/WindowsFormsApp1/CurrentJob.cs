@@ -128,7 +128,7 @@ namespace WindowsFormsApp1
 
                 //conCurrentJob.Close();
             }
-            
+
             //Document doc = new Document();
             /*Tại sao phải mở file doc ra rồi thêm 1 chữ a vào xong đóng lại?
             mục đích mấy dòng này là tạo ra file dpf thôi.
@@ -138,7 +138,7 @@ namespace WindowsFormsApp1
             do đó thêm đại 1 chữ a vô cho nó đóng được, dù gì tí nữa xuống kia cũng ghi đè lên lại hết*/
 
             #region SAVECV
-            //PdfWriter.GetInstance(doc, new FileStream("CV\\NQD.pdf", FileMode.Create));
+           // PdfWriter.GetInstance(doc, new FileStream("CV\\NQD.pdf", FileMode.Create));
 
             //doc.Open();
             //Paragraph p1 = new Paragraph("a");
@@ -174,7 +174,7 @@ namespace WindowsFormsApp1
             //                }
 
             //            }
-                        
+
             //            dr.Close();
             //        }
 
