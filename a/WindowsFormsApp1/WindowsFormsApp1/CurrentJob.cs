@@ -169,16 +169,14 @@ namespace WindowsFormsApp1
 
         private void btnCV_Click(object sender, EventArgs e)
         {
-            
             openFileDialog.CheckFileExists = true;
             openFileDialog.AddExtension = true;
             openFileDialog.Multiselect = true;
-            openFileDialog.Filter = "";
+            openFileDialog.Filter = "pdf file|*.pdf";
 
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 txtCV.Text = openFileDialog.FileName;
-                
             }
         }
 
@@ -186,12 +184,5 @@ namespace WindowsFormsApp1
         {
 
         }
-
-
-
-        //private void label7_Click(object sender, EventArgs e)
-        //{
-
-        //}
     }
 }

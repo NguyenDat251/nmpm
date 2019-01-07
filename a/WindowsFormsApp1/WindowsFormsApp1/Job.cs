@@ -86,6 +86,21 @@ namespace WindowsFormsApp1
 
         void loadLabel(int i, ref LinkLabel Name, ref Label Com, ref Label Lang, ref PictureBox picBox, ref List<Jobs> TheList)
         {
+            //try
+            //{
+            //    Name.Text = TheList[NumPage + i].Name;
+            //    Com.Text = TheList[NumPage + i].Company;
+            //    Lang.Text = TheList[NumPage + i].Language;
+            //    picBox.Image = Image.FromFile("images\\" + Com.Text + ".jpeg");
+            //}
+            //catch
+            //{
+            //    Name.Text = "";
+            //    Com.Text = "";
+            //    Lang.Text = "";
+            //    picBox.Image = null;
+            //}
+
             try
             {
                 Name.Text = TheList[NumPage + i].Name;

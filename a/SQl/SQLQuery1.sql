@@ -101,14 +101,19 @@ INSERT INTO ACCOUNT (Username, Password, Displayname, Company , type) VALUES ('e
 INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('applicant', '1', N'CHƯƠNG', 1);
 INSERT INTO ACCOUNT (Username, Password, Displayname, type) VALUES ('applicant2', '1', N'CHƯƠNG', 1);
 
-create procedure AddUser
+DROP PROCEDURE dbo.AddUser; 
+
+create proc AddUser
 @Username char(50),
 @Password char(50),
 @Displayname nvarchar(50),
 @Company nvarchar(100),
 @type int
-as 
+as
+begin 
 INSERT INTO ACCOUNT (Username, Password, Displayname, Company, type) VALUES (@Username, @Password, @Displayname, @Company, @type)
+end
+go
 
 ALTER TABLE APPLY
 ADD [PDFFile] [varbinary](max) NULL
@@ -147,3 +152,5 @@ begin
 INSERT INTO COMPANY(nameOfCom) VALUES (@name)
 end
 go
+
+delete from 

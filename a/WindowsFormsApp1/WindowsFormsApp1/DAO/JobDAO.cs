@@ -30,10 +30,8 @@ namespace WindowsFormsApp1.DAO
 
         public void createJob(byte[] data, string id, string idJ)
         {
-            string quer = "insert into APPLY " + "(PDFFile, IDCAND, IDJOB)values( @data, @id, @idJ)";
+            string quer = "insert into APPLY " + "(PDFFile, IDCAND, IDJOB)values( @data , @id , @idJ)";
             DataProvider.Instance.ExcuteNonQuerry(quer, new object[] { data, id, idJ });
         }
-
-        
     }
 }

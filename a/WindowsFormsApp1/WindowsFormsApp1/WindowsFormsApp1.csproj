@@ -153,12 +153,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\bosch-logo.jpg" />
+    <Content Include="images\ACB.jpg" />
+    <Content Include="images\BOSCH.jpg" />
     <Content Include="images\hinh-anh-bien-dep-1.jpg" />
-    <Content Include="images\logo-acb-new.jpg" />
-    <Content Include="images\money-forward-vi-t-nam-logo.jpg" />
-    <Content Include="images\monkey.jpg" />
-    <Content Include="images\trusting-social-logo.jpeg" />
+    <Content Include="images\MONKEY.jpg" />
+    <Content Include="images\MONNEYFORWARD.jpg" />
+    <Content Include="images\TRUSTINGSOCIAL.jpeg" />
     <Content Include="images\VIETTEL.jpg" />
     <Content Include="images\VNG.jpg" />
     <Content Include="Resources\hinh-anh-bien-dep-1.jpg" />

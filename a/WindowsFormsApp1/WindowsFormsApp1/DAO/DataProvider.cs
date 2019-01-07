@@ -68,22 +68,24 @@ namespace WindowsFormsApp1.DAO
             using (SqlConnection conn = new SqlConnection(sCon))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand(quer, conn);
-                if (parameter != null)
+                using (SqlCommand cmd = new SqlCommand(quer, conn))
                 {
-                    string[] listPara = quer.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
+                    if (parameter != null)
                     {
-                        if (item.Contains('@'))
+                        string[] listPara = quer.Split(' ');
+                        int i = 0;
+                        foreach (string item in listPara)
                         {
-                            cmd.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
+                            if (item.Contains('@'))
+                            {
+                                cmd.Parameters.AddWithValue(item, parameter[i]);
+                                i++;
+                            }
                         }
                     }
+                    data = cmd.ExecuteNonQuery();
+                    conn.Close();
                 }
-                data = cmd.ExecuteNonQuery();
-                conn.Close();
             }
 
             return data;
@@ -97,24 +99,24 @@ namespace WindowsFormsApp1.DAO
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand(quer, conn);
-
-                if (parameter != null)
+                using (SqlCommand cmd = new SqlCommand(quer, conn))
                 {
-                    string[] listPara = quer.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
+                    if (parameter != null)
                     {
-                        if (item.Contains('@'))
+                        string[] listPara = quer.Split(' ');
+                        int i = 0;
+                        foreach (string item in listPara)
                         {
-                            cmd.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
+                            if (item.Contains('@'))
+                            {
+                                cmd.Parameters.AddWithValue(item, parameter[i]);
+                                i++;
+                            }
                         }
                     }
+
+                    data = cmd.ExecuteNonQuery();
                 }
-
-                data = cmd.ExecuteNonQuery();
-
                 conn.Close();
             }
 
